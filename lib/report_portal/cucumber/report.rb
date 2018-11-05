@@ -177,7 +177,9 @@ module ReportPortal
         path_components.each_with_index do |path_component, index|
           child_node = parent_node[path_component]
           unless child_node # if child node was not created yet
-            if index < path_components.size - 1
+            if index < 2
+              puts "Index is less than 2!!"
+            elsif index < path_components.size - 1
               name = "Folder: #{path_component}"
               description = nil
               tags = []
