@@ -29,7 +29,7 @@ module ReportPortal
     # @api private
     class Report
       def parallel?
-        false
+        true
       end
 
       def attach_to_launch?
