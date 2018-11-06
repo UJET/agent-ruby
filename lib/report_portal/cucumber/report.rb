@@ -175,19 +175,20 @@ module ReportPortal
         child_node = nil
         path_components = feature.location.file.split(File::SEPARATOR)
         path_components.each_with_index do |path_component, index|
+          next if index < 2
           child_node = parent_node[path_component]
           unless child_node # if child node was not created yet
-            # if index < path_components.size - 1
-            #   name = "Folder: #{path_component}"
-            #   description = nil
-            #   tags = []
-            #   type = :SUITE
-            # else
+            if index < path_components.size - 1
+              name = "Folder: #{path_component}"
+              description = nil
+              tags = []
+              type = :SUITE
+            else
               name = "#{feature.keyword}: #{feature.name}"
               description = feature.file # TODO: consider adding feature description and comments
               tags = feature.tags.map(&:name)
               type = :TEST
-            # end
+            end
             # TODO: multithreading # Parallel formatter always executes scenarios inside the same feature in the same process
             if parallel? &&
                 index < path_components.size - 1 && # is folder?
