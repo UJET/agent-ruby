@@ -191,7 +191,7 @@ module ReportPortal
             end
             # TODO: multithreading # Parallel formatter always executes scenarios inside the same feature in the same process
             if parallel? &&
-                index < path_components.size - 1 && # is folder?
+                index < path_components.size && # is feature?
                 (id_of_created_item = ReportPortal.item_id_of(name, parent_node)) # get id for folder from report portal
               # get child id from other process
               item = ReportPortal::TestItem.new(name, type, id_of_created_item, time_to_send(desired_time), description, false, tags)
